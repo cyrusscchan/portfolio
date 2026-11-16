@@ -1,0 +1,6 @@
+{
+  "languages": ["[Python]", "[TypeScript]"],
+  "nlp": ["[PyTorch]", "[Hugging Face Transformers]"],
+  "evaluation": ["[QWK]", "[inter-rater agreement]"],
+  "web": ["Next.js", "React", "Tailwind CSS"]
+}

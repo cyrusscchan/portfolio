@@ -1,0 +1,19 @@
+[
+  {
+    "start": "[20XX]",
+    "end": "now",
+    "title": "[Role title]",
+    "org": "[Company] · [City]",
+    "bullets": [
+      "[Achievement with a number — e.g. shipped X used by N users.]",
+      "[Achievement with a number.]"
+    ]
+  },
+  {
+    "start": "[20XX]",
+    "end": "[20XX]",
+    "title": "[Role title]",
+    "org": "[Organization] · [City]",
+    "bullets": ["[Achievement with a number.]"]
+  }
+]

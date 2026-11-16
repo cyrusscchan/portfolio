@@ -1,0 +1,70 @@
+[
+  {
+    "slug": "essay-scorer",
+    "name": "[Essay scoring model]",
+    "tags": [
+      "nlp",
+      "aes"
+    ],
+    "blurb": "[One line: what it does and for whom.]",
+    "open": true,
+    "pipeline": {
+      "ascii": "essay ──▶ ┌──────────┐    ┌─────────┐    ┌──────────────┐\n          │ tokenize │ ──▶│ encoder │ ──▶│ rubric heads │ ──▶ scores + spans\n          └──────────┘    └─────────┘    └──────────────┘",
+      "label": "Essay goes through tokenizer, encoder and rubric heads to produce scores and highlighted spans"
+    },
+    "metrics": {
+      "caption": "Results on [dataset] (test)",
+      "columns": [
+        "Model",
+        "QWK",
+        "F1"
+      ],
+      "rows": [
+        [
+          "[Baseline]",
+          "[0.000]",
+          "[0.00]"
+        ],
+        [
+          "[Strong baseline]",
+          "[0.000]",
+          "[0.00]"
+        ],
+        [
+          "[This work]",
+          "[0.000]",
+          "[0.00]"
+        ]
+      ],
+      "best": 2
+    },
+    "links": [
+      {
+        "label": "Repo",
+        "url": "https://github.com/handle"
+      },
+      {
+        "label": "Paper",
+        "url": "https://example.com"
+      }
+    ]
+  },
+  {
+    "slug": "feedback-tool",
+    "name": "[Feedback highlighter]",
+    "tags": [
+      "nlp"
+    ],
+    "blurb": "[One line description.]",
+    "summary": "[Project detail.]"
+  },
+  {
+    "slug": "this-site",
+    "name": "This website",
+    "tags": [
+      "web"
+    ],
+    "blurb": "Static Next.js site, greyscale and monospace, prints as a résumé.",
+    "summary": "Next.js · TypeScript · Tailwind CSS · next-themes · Zod-validated JSON content."
+  }
+]

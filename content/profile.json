@@ -1,0 +1,18 @@
+{
+  "name": "Cyrus",
+  "surname": "[Surname]",
+  "location": "[City, Country]",
+  "tagline": "I work on natural language processing — mostly automated essay scoring and feedback on student writing.",
+  "description": "Cyrus — NLP researcher and engineer working on automated essay scoring and feedback on student writing.",
+  "about": [
+    "[Two or three sentences in your own voice: what you work on, the problems you care about, and the kind of role or collaboration you are looking for.]",
+    "[A second short paragraph: background, research interests, or what you are building now.]"
+  ],
+  "email": "you@example.com",
+  "links": {
+    "github": { "label": "github.com/handle", "url": "https://github.com/handle" },
+    "scholar": { "label": "Google Scholar", "url": "https://scholar.google.com/" },
+    "linkedin": { "label": "linkedin.com/in/handle", "url": "https://www.linkedin.com/in/handle" },
+    "cv": "/cv.pdf"
+  }
+}

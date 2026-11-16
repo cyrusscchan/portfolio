@@ -1,0 +1,28 @@
+[
+  {
+    "id": "surname2025paper",
+    "title": "[Paper title]",
+    "authors": [
+      { "name": "Cyrus [Surname]", "me": true },
+      { "name": "[Co-author]" },
+      { "name": "[Co-author]" }
+    ],
+    "venue": "[Venue]",
+    "year": "[Year]",
+    "pages": "[x]–[y]",
+    "links": { "pdf": "#", "doi": "#", "code": "#" },
+    "bibtex": "@inproceedings{surname2025paper,\n  title     = {[Paper title]},\n  author    = {[Surname], Cyrus and [Co-author] and [Co-author]},\n  booktitle = {[Venue]},\n  year      = {[Year]},\n  pages     = {[x]--[y]}\n}"
+  },
+  {
+    "id": "coauthor2024workshop",
+    "title": "[Paper title]",
+    "authors": [
+      { "name": "[Co-author]" },
+      { "name": "Cyrus [Surname]", "me": true }
+    ],
+    "venue": "[Workshop @ Venue]",
+    "year": "[Year]",
+    "links": { "pdf": "#", "doi": "#" },
+    "bibtex": "@inproceedings{coauthor2024workshop,\n  title     = {[Paper title]},\n  author    = {[Co-author] and [Surname], Cyrus},\n  booktitle = {[Workshop @ Venue]},\n  year      = {[Year]}\n}"
+  }
+]
