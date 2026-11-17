@@ -25,7 +25,7 @@ export function ProjectDetails({
         <span className="pf-project__blurb">{project.blurb}</span>
       </summary>
       <div className="pf-project__body">
-        {project.summary && <p className="m-0">{project.summary}</p>}
+        {project.summary && <p className="m-0 text-[14px] leading-[22px]">{project.summary}</p>}
         {project.pipeline && (
           <div>
             <div className="pf-caption mb-2">Pipeline</div>

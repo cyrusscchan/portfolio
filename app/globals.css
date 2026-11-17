@@ -369,11 +369,44 @@
     position: relative;
     padding-left: 2ch;
   }
+  .pf-entry li {
+    color: var(--ink-muted);
+  }
   .pf-entry li::before {
     content: "-";
     position: absolute;
     left: 0;
-    color: var(--ink-muted);
+  }
+  /* Collapsible entry: +/− column, then the usual date / title grid. */
+  .pf-entry--collapsible {
+    display: block;
+    padding: 0;
+  }
+  .pf-entry--collapsible:first-of-type {
+    padding-top: 0;
+  }
+  .pf-entry--collapsible > summary {
+    list-style: none;
+    cursor: pointer;
+    display: grid;
+    grid-template-columns: 3ch 14ch minmax(0, 1fr);
+    column-gap: 24px;
+    padding: 16px 0;
+  }
+  .pf-entry--collapsible:first-of-type > summary {
+    padding-top: 0;
+  }
+  .pf-entry--collapsible > summary::-webkit-details-marker {
+    display: none;
+  }
+  .pf-entry--collapsible[open] {
+    padding-bottom: 16px;
+  }
+  .pf-entry__body {
+    margin-left: calc(17ch + 48px);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
   }
 
   /* Publication */
@@ -404,18 +437,21 @@
   .pf-project > summary::-webkit-details-marker {
     display: none;
   }
-  .pf-project > summary::before {
+  .pf-project > summary::before,
+  .pf-entry--collapsible > summary::before {
     content: "+";
     display: inline-block;
     justify-self: start;
     color: var(--ink-muted);
   }
-  .pf-project[open] > summary::before {
+  .pf-project[open] > summary::before,
+  .pf-entry--collapsible[open] > summary::before {
     content: "\2212";
     color: var(--ink);
     animation: pf-spin var(--dur) var(--ease);
   }
-  .pf-project[open] > .pf-project__body {
+  .pf-project[open] > .pf-project__body,
+  .pf-entry--collapsible[open] > .pf-entry__body {
     animation: pf-expand var(--dur) var(--ease);
   }
   @keyframes pf-spin {
@@ -569,7 +605,9 @@
   @media (prefers-reduced-motion: reduce) {
     .pf-cursor,
     .pf-project[open] > summary::before,
-    .pf-project[open] > .pf-project__body {
+    .pf-project[open] > .pf-project__body,
+    .pf-entry--collapsible[open] > summary::before,
+    .pf-entry--collapsible[open] > .pf-entry__body {
       animation: none;
     }
     .pf-nav a,
@@ -588,6 +626,16 @@
   @media (max-width: 640px) {
     .pf-entry {
       grid-template-columns: minmax(0, 1fr);
+    }
+    .pf-entry--collapsible > summary {
+      grid-template-columns: 3ch minmax(0, 1fr);
+      column-gap: 8px;
+    }
+    .pf-entry--collapsible > summary > * {
+      grid-column: 2;
+    }
+    .pf-entry__body {
+      margin-left: calc(3ch + 8px);
     }
   }
 }

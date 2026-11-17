@@ -7,7 +7,7 @@ import { switchTheme } from "@/lib/theme";
 // Print: open every project so the résumé shows full details, then restore.
 // Keyboard: `t` toggles the theme (ignored while typing or with modifiers).
 // Reveal: sections below the fold on load fade up the first time they scroll into view.
-// Projects: rows grow and shrink to their new height instead of snapping open/shut.
+// Projects & experience: rows grow and shrink to their new height instead of snapping open/shut.
 export function PageEffects() {
   const { resolvedTheme, setTheme } = useTheme();
 
@@ -15,7 +15,7 @@ export function PageEffects() {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
     const running = new WeakMap<HTMLDetailsElement, Animation>();
     const onClick = (event: MouseEvent) => {
-      const summary = (event.target as HTMLElement | null)?.closest(".pf-project > summary");
+      const summary = (event.target as HTMLElement | null)?.closest(".pf-project > summary, .pf-entry > summary");
       if (!summary || reduced.matches) return;
       event.preventDefault();
       const details = summary.parentElement as HTMLDetailsElement;

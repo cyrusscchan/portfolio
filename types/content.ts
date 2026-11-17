@@ -23,6 +23,7 @@ export const EntrySchema = z.object({
   org: z.string(),
   detail: z.string().optional(),
   bullets: z.array(z.string()).max(4).default([]),
+  open: z.boolean().default(false),
 });
 
 export const PublicationSchema = z.object({
