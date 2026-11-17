@@ -1,6 +1,6 @@
 {
-  "languages": ["[Python]", "[TypeScript]"],
-  "nlp": ["[PyTorch]", "[Hugging Face Transformers]"],
-  "evaluation": ["[QWK]", "[inter-rater agreement]"],
-  "web": ["Next.js", "React", "Tailwind CSS"]
+  "languages": ["Python", "TypeScript", "SQL"],
+  "ml": ["NumPy", "scikit-learn", "spaCy", "PyTorch", "Transformers", "LangChain", "LlamaIndex"],
+  "web": ["FastAPI", "Next.js", "React", "Tailwind CSS"],
+  "tools": ["Docker", "Git"]
 }

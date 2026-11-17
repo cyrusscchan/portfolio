@@ -1,18 +1,16 @@
 {
   "name": "Cyrus",
-  "surname": "[Surname]",
-  "location": "[City, Country]",
-  "tagline": "I work on natural language processing — mostly automated essay scoring and feedback on student writing.",
-  "description": "Cyrus — NLP researcher and engineer working on automated essay scoring and feedback on student writing.",
+  "surname": "Chan",
+  "location": "Toronto, Canada",
+  "tagline": "I work on AI, machine learning, and natural language processing, mostly automated scoring.",
+  "description": "Cyrus — AI & Data engineer working on automated scoring.",
   "about": [
-    "[Two or three sentences in your own voice: what you work on, the problems you care about, and the kind of role or collaboration you are looking for.]",
-    "[A second short paragraph: background, research interests, or what you are building now.]"
+    "I like building things that improve people's lives. I care about not only technical feasibility, but also making an impact with good intentions.",
+    "With a background in computer science and language education, I see the world through both a technical and humanistic lens. I'm interested in projects that combine these perspectives, and I like working with people from different backgrounds."
   ],
-  "email": "you@example.com",
+  "email": "cyruschanca@gmail.com",
   "links": {
-    "github": { "label": "github.com/handle", "url": "https://github.com/handle" },
-    "scholar": { "label": "Google Scholar", "url": "https://scholar.google.com/" },
-    "linkedin": { "label": "linkedin.com/in/handle", "url": "https://www.linkedin.com/in/handle" },
-    "cv": "/cv.pdf"
+    "github": { "label": "github.com/cyrusscchan", "url": "https://github.com/cyrusscchan" },
+    "linkedin": { "label": "linkedin.com/in/cyrusscchan", "url": "https://www.linkedin.com/in/cyrusscchan" }
   }
 }

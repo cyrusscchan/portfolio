@@ -1,70 +1,120 @@
 [
   {
-    "slug": "essay-scorer",
-    "name": "[Essay scoring model]",
+    "slug": "textropy",
+    "name": "Textropy",
     "tags": [
       "nlp",
-      "aes"
+      "web"
     ],
-    "blurb": "[One line: what it does and for whom.]",
+    "blurb": "Linguistic text analysis across three feature tiers.",
     "open": true,
+    "summary": "An NLP pipeline that extracts 50 linguistic features from text. It analyzes one text or compares two.",
     "pipeline": {
-      "ascii": "essay ──▶ ┌──────────┐    ┌─────────┐    ┌──────────────┐\n          │ tokenize │ ──▶│ encoder │ ──▶│ rubric heads │ ──▶ scores + spans\n          └──────────┘    └─────────┘    └──────────────┘",
-      "label": "Essay goes through tokenizer, encoder and rubric heads to produce scores and highlighted spans"
+      "ascii": "           ┌──────────────────┐     ┌──────────────────┐\ntext A ──▶ │ signal extractor │ ──▶ │ feature computer │ ─┐\n           └──────────────────┘     └──────────────────┘  │   ┌─────────────────────┐\n                                                          ├─▶ │ comparison computer │ ─▶ results\n           ┌──────────────────┐     ┌──────────────────┐  │   └─────────────────────┘\ntext B ──▶ │ signal extractor │ ──▶ │ feature computer │ ─┘\n           └──────────────────┘     └──────────────────┘",
+      "label": "Each text goes through signal extraction and feature computation. Two texts can then be compared."
     },
     "metrics": {
-      "caption": "Results on [dataset] (test)",
+      "caption": "Feature tiers",
       "columns": [
-        "Model",
-        "QWK",
-        "F1"
+        "Tier",
+        "Count",
+        "Types"
       ],
       "rows": [
         [
-          "[Baseline]",
-          "[0.000]",
-          "[0.00]"
+          "T1",
+          "39",
+          "lexical, clause, sentence, punctuation, complexity"
         ],
         [
-          "[Strong baseline]",
-          "[0.000]",
-          "[0.00]"
+          "T2",
+          "7",
+          "sentiment, coreference, cohesion"
         ],
         [
-          "[This work]",
-          "[0.000]",
-          "[0.00]"
+          "T3",
+          "4",
+          "perplexity, surprisal"
         ]
-      ],
-      "best": 2
+      ]
     },
     "links": [
       {
-        "label": "Repo",
-        "url": "https://github.com/handle"
+        "label": "Live",
+        "url": "https://textropy.dev"
       },
       {
-        "label": "Paper",
-        "url": "https://example.com"
+        "label": "Repo",
+        "url": "https://github.com/cyrusscchan/textropy"
       }
     ]
   },
   {
-    "slug": "feedback-tool",
-    "name": "[Feedback highlighter]",
+    "slug": "docchat",
+    "name": "DocChat",
     "tags": [
-      "nlp"
-    ],
-    "blurb": "[One line description.]",
-    "summary": "[Project detail.]"
-  },
-  {
-    "slug": "this-site",
-    "name": "This website",
-    "tags": [
+      "llm",
       "web"
     ],
-    "blurb": "Static Next.js site, greyscale and monospace, prints as a résumé.",
-    "summary": "Next.js · TypeScript · Tailwind CSS · next-themes · Zod-validated JSON content."
+    "blurb": "Ask questions about your documents. Uses hybrid RAG.",
+    "open": true,
+    "summary": "A hybrid RAG pipeline with a ReAct agent. It answers questions from uploaded documents and falls back to web search.",
+    "pipeline": {
+      "ascii": "          ┌─────────────┐\ndocs  ──▶ │ vectorstore │ ◀────────────────────────┐\n          └─────────────┘                          │\n          ┌─────────────┐                    ┌─────┴─────┐     ┌─────┐     ┌────────────┐\nquery ──▶ │ multi-query │ ─┬─────────────┬─▶ │ retrieval │ ──▶ │ RRF │ ──▶ │ generation │\n          └─────────────┘  │   ┌──────┐  │   └───────────┘     └─────┘     └────────────┘\n                           └─▶ │ HyDE │ ─┘\n                               └──────┘",
+      "label": "Rewrite the query into variants, generate hypothetical passages (HyDE), retrieve nodes, rank them with RRF, and generate the answer."
+    },
+    "links": [
+      {
+        "label": "Live",
+        "url": "https://docchat.bitpkt.com"
+      },
+      {
+        "label": "Repo",
+        "url": "https://github.com/cyrusscchan/docchat"
+      }
+    ]
+  },
+  {
+    "slug": "aes2",
+    "name": "Automated Essay Scoring 2.0",
+    "tags": [
+      "aes",
+      "nlp"
+    ],
+    "blurb": "Kaggle essay scoring competition by The Learning Agency Lab, 2024.",
+    "summary": "Three attempts at the Kaggle competition, comparing ML and transformer approaches.",
+    "open": true,
+    "metrics": {
+      "caption": "Results",
+      "columns": [
+        "Model",
+        "CV QWK",
+        "Test QWK"
+      ],
+      "rows": [
+        [
+          "RFR",
+          "0.73913",
+          "0.75470"
+        ],
+        [
+          "DeBERTa V3",
+          "0.80131",
+          "0.81713"
+        ],
+        [
+          "DeBERTa V3 K-Fold",
+          "0.80359",
+          "0.81222"
+        ]
+      ],
+      "best": 1
+    },
+    "links": [
+      {
+        "label": "Kaggle",
+        "url": "https://www.kaggle.com/code/cyruscsc/aes2-deberta-v3"
+      }
+    ]
   }
 ]

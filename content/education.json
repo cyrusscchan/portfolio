@@ -1,8 +1,14 @@
 [
   {
-    "start": "[20XX]",
-    "end": "[20XX]",
-    "title": "[Degree, Field]",
-    "org": "[University] · [Thesis or focus]"
+    "start": "2023",
+    "end": "2025",
+    "title": "Master of Science in Computer Science with Artificial Intelligence",
+    "org": "University of York"
+  },
+  {
+    "start": "2017",
+    "end": "2022",
+    "title": "Bachelor of Arts and Bachelor of Education in Language Education",
+    "org": "The University of Hong Kong"
   }
 ]

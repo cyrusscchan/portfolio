@@ -1,19 +1,24 @@
 [
   {
-    "start": "[20XX]",
+    "start": "2025",
     "end": "now",
-    "title": "[Role title]",
-    "org": "[Company] · [City]",
+    "title": "AI & Data Engineer",
+    "org": "Vretta · Toronto",
     "bullets": [
-      "[Achievement with a number — e.g. shipped X used by N users.]",
-      "[Achievement with a number.]"
+      "Build automated scoring engines for Canadian provincial K-12 assessments. Cut scoring effort by up to 50%.",
+      "Add safeguards and tools to the workflow to protect the integrity and privacy of 500k+ student responses a year.",
+      "Run research studies on automated scoring with education ministries and agencies."
     ]
   },
   {
-    "start": "[20XX]",
-    "end": "[20XX]",
-    "title": "[Role title]",
-    "org": "[Organization] · [City]",
-    "bullets": ["[Achievement with a number.]"]
+    "start": "2023",
+    "end": "2025",
+    "title": "Full Stack Developer",
+    "org": "Freelance · Toronto",
+    "bullets": [
+      "Built an open-source networking platform for Hong Kongers in Canada. Among its 5k+ users, 62% made connections, 23% got job referrals, and 6% got job offers.",
+      "Built a full-stack web app for a startup that helps young adults with ASD build romantic relationships.",
+      "Built websites for clients in several industries, with 10M+ visitors globally."
+    ]
   }
 ]

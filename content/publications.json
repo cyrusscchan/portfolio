@@ -1,28 +1,19 @@
 [
   {
-    "id": "surname2025paper",
-    "title": "[Paper title]",
+    "id": "2026.aimecon-wip.40",
+    "title": "Evaluating Machine Learning, Transformer, and LLM Approaches for Large-Scale Automated Essay Scoring",
     "authors": [
-      { "name": "Cyrus [Surname]", "me": true },
-      { "name": "[Co-author]" },
-      { "name": "[Co-author]" }
+      { "name": "Cyrus Sai-Cheong Chan", "me": true },
+      { "name": "Charles Anifowose" },
+      { "name": "Su Zhang" },
+      { "name": "Winnie Wing-Yee Tse" },
+      { "name": "Nizam Radwan" },
+      { "name": "Hyunah Kim" }
     ],
-    "venue": "[Venue]",
-    "year": "[Year]",
-    "pages": "[x]–[y]",
-    "links": { "pdf": "#", "doi": "#", "code": "#" },
-    "bibtex": "@inproceedings{surname2025paper,\n  title     = {[Paper title]},\n  author    = {[Surname], Cyrus and [Co-author] and [Co-author]},\n  booktitle = {[Venue]},\n  year      = {[Year]},\n  pages     = {[x]--[y]}\n}"
-  },
-  {
-    "id": "coauthor2024workshop",
-    "title": "[Paper title]",
-    "authors": [
-      { "name": "[Co-author]" },
-      { "name": "Cyrus [Surname]", "me": true }
-    ],
-    "venue": "[Workshop @ Venue]",
-    "year": "[Year]",
-    "links": { "pdf": "#", "doi": "#" },
-    "bibtex": "@inproceedings{coauthor2024workshop,\n  title     = {[Paper title]},\n  author    = {[Co-author] and [Surname], Cyrus},\n  booktitle = {[Workshop @ Venue]},\n  year      = {[Year]}\n}"
+    "venue": "Proceedings of the Artificial Intelligence in Measurement and Education Conference (AIME-Con): Works in Progress",
+    "year": "2026",
+    "pages": "315–321",
+    "links": { "pdf": "https://aclanthology.org/2026.aimecon-wip.40.pdf", "url": "https://aclanthology.org/2026.aimecon-wip.40/" },
+    "bibtex": "@inproceedings{chan-etal-2026-evaluating,\n    title = \"Evaluating Machine Learning, Transformer, and {LLM} Approaches for Large-Scale Automated Essay Scoring\",\n    author = \"Chan, Cyrus Sai-Cheong  and\n      Anifowose, Charles  and\n      Zhang, Su  and\n      Tse, Winnie Wing-Yee  and\n      Radwan, Nizam  and\n      Kim, Hyunah\",\n    editor = \"Wilson, Joshua  and\n      Ormerod, Christopher  and\n      Beiting-Parrish, Magdalen\",\n    booktitle = \"Proceedings of the Artificial Intelligence in Measurement and Education Conference ({AIME}-Con): Works in Progress\",\n    month = oct,\n    year = \"2026\",\n    address = \"Wyndham Grand Pittsburgh Downtown, Pittsburgh, Pennsylvania, United States\",\n    publisher = \"National Council on Measurement in Education (NCME)\",\n    url = \"https://aclanthology.org/2026.aimecon-wip.40/\",\n    pages = \"315--321\",\n    ISBN = \"979-8-9983004-1-7\",\n    abstract = \"This study compared machine learning, transformer fine-tuning, prompt-based LLM, and novel ensemble approaches for automated essay scoring in a Canadian large-scale provincial assessment. Fine-tuned transformers achieved the highest reliability, followed by machine learning models. Meanwhile, prompt-based LLMs provided greater explainability, and ensemble architectures highlighted opportunities for balancing reliability and explainability.\"\n}"
   }
 ]
