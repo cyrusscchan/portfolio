@@ -31,7 +31,7 @@ header/nav -> hero -> about -> experience -> publications -> projects -> skills 
 
 ### Design artifacts (2026-11-15)
 - Design system "Paper & Terminal": https://claude.ai/artifact/AAbXBPRHArpDjy7rPecZXN
-  - Font: IBM Plex Mono 400/500/600. Themes `data-theme="paper" | "terminal"`.
+  - Font: IBM Plex Mono 400/500/600. Themes Paper (`data-theme="light"`) and Terminal (`data-theme="dark"`).
   - Paper: bg #ecebe6, raised #f6f5f1, ink #1a1a18, muted #55544f, rule #c4c2bb, rule-strong #82807a.
   - Terminal: bg #0f0f0f, raised #171717, ink #d9d9d5, muted #9c9c97, rule #333331, rule-strong #6b6b67.
   - Type: display 40/48, title 22/32, subtitle 16/24, body 15/24, small 13/20, label 12/16 caps, code 13/18. 4px spacing grid; radius 0.

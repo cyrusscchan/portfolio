@@ -83,7 +83,7 @@
     ],
     "blurb": "Kaggle essay scoring competition by The Learning Agency Lab, 2024.",
     "summary": "Three attempts at the Kaggle competition, comparing ML and transformer approaches.",
-    "open": true,
+    "open": false,
     "metrics": {
       "caption": "Results",
       "columns": [

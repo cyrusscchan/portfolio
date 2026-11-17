@@ -5,7 +5,7 @@ import { ThemeToggle } from "./ThemeToggle";
 
 export type NavItem = { id: string; label: string };
 
-export function SiteHeader({ name, items }: { name: string; items: NavItem[] }) {
+export function SiteHeader({ name, label, items }: { name: string; label?: string; items: NavItem[] }) {
   const [current, setCurrent] = useState<string | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -54,7 +54,7 @@ export function SiteHeader({ name, items }: { name: string; items: NavItem[] }) 
   return (
     <header className="site-header sticky top-0 z-10 border-b border-dashed border-rule bg-bg">
       <div className="mx-auto flex max-w-wrap items-center justify-between gap-4 px-6 py-4 md:px-12">
-        <a href="#top" className="font-semibold no-underline">
+        <a href="#top" aria-label={label} className="font-semibold no-underline">
           {name}
         </a>
         <nav aria-label="Sections" className="pf-nav no-print hidden items-center gap-5 md:flex">

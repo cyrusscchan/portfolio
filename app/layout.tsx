@@ -11,7 +11,7 @@ const plexMono = IBM_Plex_Mono({
   display: "swap",
 });
 
-const title = `${profile.name} — Portfolio`;
+const title = `${profile.name} ${profile.surname}`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -26,6 +26,7 @@ export const metadata: Metadata = {
     siteName: title,
   },
   twitter: { card: "summary_large_image", title, description: profile.description },
+  appleWebApp: { title: "CC" },
 };
 
 export const viewport: Viewport = {

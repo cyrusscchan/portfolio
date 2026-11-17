@@ -5,7 +5,6 @@ export function Footer({ name }: { name: string }) {
         <span>
           © {new Date().getFullYear()} {name}
         </span>
-        <span>Print this page for a clean résumé</span>
       </div>
     </footer>
   );

@@ -35,7 +35,11 @@ export default function Home() {
         Skip to content
       </a>
       <PageEffects />
-      <SiteHeader name={profile.name} items={sections} />
+      <SiteHeader
+        name={`${profile.name[0]}${profile.surname[0]}`}
+        label={`${profile.name} ${profile.surname}`}
+        items={sections}
+      />
       <main id="main" className="mx-auto max-w-wrap px-6 pb-24 md:px-12">
         <Hero profile={profile} />
 
@@ -77,7 +81,7 @@ export default function Home() {
           <Contact profile={profile} />
         </Section>
       </main>
-      <Footer name={profile.name} />
+      <Footer name={`${profile.name} ${profile.surname}`} />
     </div>
   );
 }

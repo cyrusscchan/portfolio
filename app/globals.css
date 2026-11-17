@@ -2,7 +2,7 @@
 
 /* Paper & Terminal — tokens. Values from the design system's tokens.json. */
 :root,
-[data-theme="paper"] {
+[data-theme="light"] {
   --bg: #ecebe6;
   --bg-raised: #f6f5f1;
   --ink: #1a1a18;
@@ -12,7 +12,7 @@
   color-scheme: light;
 }
 
-[data-theme="terminal"] {
+[data-theme="dark"] {
   --bg: #0f0f0f;
   --bg-raised: #171717;
   --ink: #d9d9d5;
