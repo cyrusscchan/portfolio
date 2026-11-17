@@ -2,6 +2,7 @@
 
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
+import { switchTheme } from "@/lib/theme";
 
 export function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
@@ -16,7 +17,7 @@ export function ThemeToggle() {
       type="button"
       className="pf-toggle no-print"
       aria-label={`Switch to ${next.toLowerCase()} theme`}
-      onClick={() => setTheme(dark ? "light" : "dark")}
+      onClick={() => switchTheme(setTheme, dark ? "light" : "dark")}
     >
       <svg viewBox="0 0 14 14" aria-hidden="true" className="pf-icon" style={{ width: 14, height: 14 }}>
         <circle cx="7" cy="7" r="5" />

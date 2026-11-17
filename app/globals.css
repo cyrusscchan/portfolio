@@ -26,6 +26,8 @@
   --inverse-bg: var(--ink);
   --inverse-ink: var(--bg);
   --focus: var(--ink);
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur: 220ms;
 }
 
 @theme inline {
@@ -133,11 +135,47 @@
     text-transform: uppercase;
     text-decoration: none;
     color: var(--ink-muted);
+    padding-bottom: 3px;
+    background: linear-gradient(currentColor, currentColor) left bottom / 0% 1px no-repeat;
+    transition:
+      background-size var(--dur) var(--ease),
+      color var(--dur) var(--ease);
   }
   .pf-nav a:hover,
   .pf-nav a[aria-current="true"] {
     color: var(--ink);
-    text-decoration: underline;
+    background-size: 100% 1px;
+  }
+
+  /* Mobile menu: height grows/shrinks via the 0fr→1fr row; visibility flips after the
+     close finishes so closed links leave the tab order and accessibility tree. */
+  .pf-menu {
+    display: grid;
+    grid-template-rows: 0fr;
+    visibility: hidden;
+    transition:
+      grid-template-rows var(--dur) var(--ease),
+      visibility 0s linear var(--dur);
+  }
+  .pf-menu > nav {
+    min-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(-4px);
+    transition:
+      opacity var(--dur) var(--ease),
+      transform var(--dur) var(--ease);
+  }
+  .pf-menu[data-open="true"] {
+    grid-template-rows: 1fr;
+    visibility: visible;
+    transition:
+      grid-template-rows var(--dur) var(--ease),
+      visibility 0s;
+  }
+  .pf-menu[data-open="true"] > nav {
+    opacity: 1;
+    transform: none;
   }
 
   /* ThemeToggle */
@@ -153,13 +191,18 @@
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--ink);
-    background: transparent;
+    background: linear-gradient(var(--inverse-bg), var(--inverse-bg)) left / 0% 100% no-repeat;
     border: 1px solid var(--rule-strong);
     border-radius: 2px;
     cursor: pointer;
+    transition:
+      background-size var(--dur) var(--ease),
+      color var(--dur) var(--ease),
+      border-color var(--dur) var(--ease);
   }
-  .pf-toggle:hover {
-    background: var(--inverse-bg);
+  .pf-toggle:hover,
+  .pf-toggle:focus-visible {
+    background-size: 100% 100%;
     color: var(--inverse-ink);
     border-color: var(--inverse-bg);
   }
@@ -215,10 +258,13 @@
     content: "]";
   }
   button.pf-tag {
+    position: relative;
+    z-index: 1;
     background: none;
     border: 0;
     padding: 2px 6px;
     cursor: pointer;
+    transition: color var(--dur) var(--ease);
   }
   button.pf-tag:hover {
     color: var(--ink);
@@ -226,6 +272,23 @@
   button.pf-tag[aria-pressed="true"] {
     background: var(--inverse-bg);
     color: var(--inverse-ink);
+  }
+  /* Projects filter: one highlight that slides to the pressed tag. */
+  .pf-filter-indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: var(--inverse-bg);
+    pointer-events: none;
+  }
+  [data-ready] > .pf-filter-indicator {
+    transition:
+      transform var(--dur) var(--ease),
+      width var(--dur) var(--ease),
+      height var(--dur) var(--ease);
+  }
+  [data-ready] > button.pf-tag[aria-pressed="true"] {
+    background: none;
   }
 
   /* Button */
@@ -242,18 +305,27 @@
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--ink);
-    background: transparent;
+    background: linear-gradient(var(--inverse-bg), var(--inverse-bg)) left / 0% 100% no-repeat;
     border: 1px solid var(--ink);
     text-decoration: none;
     cursor: pointer;
+    transition:
+      background-size var(--dur) var(--ease),
+      color var(--dur) var(--ease);
   }
   .pf-btn:hover,
-  .pf-btn--solid {
-    background: var(--inverse-bg);
+  .pf-btn:focus-visible {
+    background-size: 100% 100%;
     color: var(--inverse-ink);
   }
-  .pf-btn--solid:hover {
-    background: transparent;
+  /* Solid: the page colour fills in instead. */
+  .pf-btn--solid {
+    background-color: var(--inverse-bg);
+    background-image: linear-gradient(var(--bg), var(--bg));
+    color: var(--inverse-ink);
+  }
+  .pf-btn--solid:hover,
+  .pf-btn--solid:focus-visible {
     color: var(--ink);
   }
   .pf-linkbtn {
@@ -334,11 +406,28 @@
   }
   .pf-project > summary::before {
     content: "+";
+    display: inline-block;
+    justify-self: start;
     color: var(--ink-muted);
   }
   .pf-project[open] > summary::before {
     content: "\2212";
     color: var(--ink);
+    animation: pf-spin var(--dur) var(--ease);
+  }
+  .pf-project[open] > .pf-project__body {
+    animation: pf-expand var(--dur) var(--ease);
+  }
+  @keyframes pf-spin {
+    from {
+      transform: rotate(-90deg);
+    }
+  }
+  @keyframes pf-expand {
+    from {
+      opacity: 0;
+      transform: translateY(-4px);
+    }
   }
   .pf-project__blurb {
     grid-column: 2 / 4;
@@ -346,8 +435,13 @@
     font-size: 13px;
     line-height: 20px;
   }
+  /* Gap as padding, not body margin: a margin would collapse out of the row
+     and jump when PageEffects' height animation clears overflow:hidden. */
+  .pf-project[open] {
+    padding-bottom: 16px;
+  }
   .pf-project__body {
-    margin: 0 0 16px 3ch;
+    margin: 0 0 0 3ch;
     padding: 16px;
     background: var(--bg-raised);
     border: 1px solid var(--rule);
@@ -454,9 +548,40 @@
       opacity: 0;
     }
   }
+
+  /* Section reveal (PageEffects marks sections below the fold on load). */
+  [data-reveal] {
+    transition:
+      opacity 400ms var(--ease),
+      transform 400ms var(--ease);
+  }
+  [data-reveal="pending"] {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  /* Theme switch crossfade (lib/theme.ts). */
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 200ms;
+  }
+
   @media (prefers-reduced-motion: reduce) {
-    .pf-cursor {
+    .pf-cursor,
+    .pf-project[open] > summary::before,
+    .pf-project[open] > .pf-project__body {
       animation: none;
+    }
+    .pf-nav a,
+    .pf-toggle,
+    .pf-btn,
+    button.pf-tag,
+    [data-ready] > .pf-filter-indicator,
+    [data-reveal],
+    .pf-menu,
+    .pf-menu[data-open="true"],
+    .pf-menu > nav {
+      transition: none;
     }
   }
 
@@ -512,6 +637,10 @@
   }
   .pf-project[hidden] {
     display: block !important;
+  }
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
   }
   .pf-project__body {
     border: 0;

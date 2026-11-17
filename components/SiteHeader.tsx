@@ -74,15 +74,12 @@ export function SiteHeader({ name, items }: { name: string; items: NavItem[] }) 
           </button>
         </div>
       </div>
-      {menuOpen && (
-        <nav
-          id="mobile-nav"
-          aria-label="Sections"
-          className="pf-nav no-print flex flex-col gap-4 border-t border-dashed border-rule px-6 py-4 md:hidden"
-        >
-          {links}
+      {/* Always rendered so it can animate shut; hidden from focus/AT while closed (see .pf-menu). */}
+      <div id="mobile-nav" className="pf-menu no-print md:hidden" data-open={menuOpen}>
+        <nav aria-label="Sections" className="pf-nav">
+          <div className="flex flex-col gap-4 border-t border-dashed border-rule px-6 py-4">{links}</div>
         </nav>
-      )}
+      </div>
     </header>
   );
 }

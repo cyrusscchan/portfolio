@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import type { Project } from "@/types/content";
 import { ProjectDetails } from "./ProjectDetails";
 
@@ -13,6 +13,26 @@ export function Projects({
 }) {
   const [filter, setFilter] = useState("all");
   const tags = ["all", ...new Set(projects.flatMap((p) => p.tags))];
+  const groupRef = useRef<HTMLDivElement>(null);
+  const buttonRefs = useRef(new Map<string, HTMLButtonElement>());
+  const [indicator, setIndicator] = useState<React.CSSProperties | null>(null);
+
+  // Sliding highlight: track the pressed tag's box; re-measure when the row reflows.
+  useLayoutEffect(() => {
+    const measure = () => {
+      const button = buttonRefs.current.get(filter);
+      if (!button) return;
+      setIndicator({
+        transform: `translate(${button.offsetLeft}px, ${button.offsetTop}px)`,
+        width: button.offsetWidth,
+        height: button.offsetHeight,
+      });
+    };
+    measure();
+    const observer = new ResizeObserver(measure);
+    if (groupRef.current) observer.observe(groupRef.current);
+    return () => observer.disconnect();
+  }, [filter]);
 
   // `/#slug` deep links: clear the filter, open the matching row and scroll to it.
   useEffect(() => {
@@ -36,14 +56,21 @@ export function Projects({
   return (
     <>
       <div
+        ref={groupRef}
         role="group"
         aria-label="Filter projects by tag"
-        className="no-print mb-4 flex flex-wrap items-center gap-2"
+        className="no-print relative mb-4 flex flex-wrap items-center gap-2"
+        data-ready={indicator ? "" : undefined}
       >
+        {indicator && <span className="pf-filter-indicator" aria-hidden="true" style={indicator} />}
         <span className="pf-caption mr-1">Filter</span>
         {tags.map((tag) => (
           <button
             key={tag}
+            ref={(el) => {
+              if (el) buttonRefs.current.set(tag, el);
+              else buttonRefs.current.delete(tag);
+            }}
             type="button"
             className="pf-tag"
             aria-pressed={filter === tag}
