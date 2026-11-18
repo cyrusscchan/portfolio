@@ -20,6 +20,10 @@ COPY . .
 # Learn more here: https://nextjs.org/telemetry
 ENV NEXT_TELEMETRY_DISABLED=1
 
+# Baked into sitemap, robots.txt and OG metadata at build time
+ARG NEXT_PUBLIC_SITE_URL
+ENV NEXT_PUBLIC_SITE_URL=$NEXT_PUBLIC_SITE_URL
+
 # output: "export" in next.config.ts writes a static site to /app/out
 RUN npm run build
 
