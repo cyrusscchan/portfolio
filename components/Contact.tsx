@@ -6,12 +6,6 @@ export function Contact({ profile }: { profile: Profile }) {
   return (
     <dl className="pf-kv">
       <div className="contents">
-        <dt>email</dt>
-        <dd>
-          <a href={`mailto:${profile.email}`}>{profile.email}</a>
-        </dd>
-      </div>
-      <div className="contents">
         <dt>github</dt>
         <dd>
           <ExternalLink href={github.url}>{github.label}</ExternalLink>
@@ -25,14 +19,12 @@ export function Contact({ profile }: { profile: Profile }) {
           </dd>
         </div>
       )}
-      {linkedin && (
-        <div className="contents">
-          <dt>linkedin</dt>
-          <dd>
-            <ExternalLink href={linkedin.url}>{linkedin.label}</ExternalLink>
-          </dd>
-        </div>
-      )}
+      <div className="contents">
+        <dt>linkedin</dt>
+        <dd>
+          <ExternalLink href={linkedin.url}>{linkedin.label}</ExternalLink>
+        </dd>
+      </div>
     </dl>
   );
 }

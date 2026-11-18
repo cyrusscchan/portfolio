@@ -7,11 +7,10 @@ export const ProfileSchema = z.object({
   tagline: z.string(),
   description: z.string(),
   about: z.array(z.string()).min(1),
-  email: z.string(),
   links: z.object({
     github: z.object({ label: z.string(), url: z.string() }),
     scholar: z.object({ label: z.string(), url: z.string() }).optional(),
-    linkedin: z.object({ label: z.string(), url: z.string() }).optional(),
+    linkedin: z.object({ label: z.string(), url: z.string() }),
     cv: z.string().optional(),
   }),
 });
