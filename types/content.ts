@@ -33,7 +33,7 @@ export const PublicationSchema = z.object({
   year: z.string(),
   pages: z.string().optional(),
   links: z
-    .object({ pdf: z.string().optional(), doi: z.string().optional(), code: z.string().optional() })
+    .object({ url: z.string().optional(), pdf: z.string().optional(), code: z.string().optional() })
     .default({}),
   bibtex: z.string(),
 });

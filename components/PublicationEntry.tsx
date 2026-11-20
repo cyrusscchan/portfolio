@@ -1,10 +1,11 @@
 import type { Publication } from "@/types/content";
 import { CopyBibtex } from "./CopyBibtex";
+import { ExternalLink } from "./ExternalLink";
 
 export function PublicationEntry({ pub, index }: { pub: Publication; index: number }) {
   const links = [
+    { label: "URL", url: pub.links.url },
     { label: "PDF", url: pub.links.pdf },
-    { label: "DOI", url: pub.links.doi },
     { label: "Code", url: pub.links.code },
   ].filter((link): link is { label: string; url: string } => Boolean(link.url));
 
@@ -27,9 +28,9 @@ export function PublicationEntry({ pub, index }: { pub: Publication; index: numb
         </p>
         <div className="no-print mt-2 flex flex-wrap gap-4 text-small">
           {links.map((link) => (
-            <a key={link.label} href={link.url}>
+            <ExternalLink key={link.label} href={link.url}>
               {link.label}
-            </a>
+            </ExternalLink>
           ))}
           <CopyBibtex bibtex={pub.bibtex} />
         </div>
