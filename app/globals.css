@@ -597,6 +597,38 @@
     }
   }
 
+  /* Namecard (components/Namecard.tsx): a full-screen card shown in place of the page.
+     QR first in the DOM, so it sits left on landscape screens and on top on portrait ones. */
+  .pf-namecard {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 5;
+    align-items: safe center;
+    justify-content: safe center;
+    gap: 6vmin;
+    padding: 72px 24px 24px;
+    overflow-y: auto;
+    background: var(--bg);
+    animation: pf-expand var(--dur) var(--ease);
+  }
+  @media (orientation: portrait) {
+    .pf-namecard {
+      flex-direction: column;
+    }
+  }
+  .pf-namecard__qr {
+    flex: none;
+    width: min(60vmin, 420px);
+    height: auto;
+    color: var(--ink);
+    border: 1px solid var(--rule);
+  }
+  .pf-namecard__info {
+    width: min(44ch, 100%);
+    overflow-wrap: anywhere;
+  }
+
   /* Section reveal (PageEffects marks sections below the fold on load). */
   [data-reveal] {
     transition:
@@ -615,6 +647,7 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
+    .pf-namecard,
     .pf-cursor,
     .pf-project[open] > summary::before,
     .pf-project[open] > .pf-project__body,
@@ -654,6 +687,27 @@
 
 .print-only {
   display: none;
+}
+
+/* Namecard view (<html data-view="card">): only the card and its toggle remain.
+   Unlayered so it wins over Tailwind display utilities on the hidden elements. */
+[data-view="card"] {
+  overflow: hidden;
+}
+[data-view="card"] .pf-namecard {
+  display: flex;
+}
+[data-view="card"] main,
+[data-view="card"] footer,
+[data-view="card"] .pf-card-hide {
+  display: none;
+}
+[data-view="card"] .site-header {
+  background: transparent;
+  border-color: transparent;
+}
+[data-view="card"] .site-header > div {
+  justify-content: flex-end;
 }
 
 /* Print: the page becomes a clean résumé. */
