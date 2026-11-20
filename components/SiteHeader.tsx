@@ -5,7 +5,7 @@ import { ThemeToggle } from "./ThemeToggle";
 
 export type NavItem = { id: string; label: string };
 
-export function SiteHeader({ name, label, items }: { name: string; label?: string; items: NavItem[] }) {
+export function SiteHeader({ label, items }: { label?: string; items: NavItem[] }) {
   const [current, setCurrent] = useState<string | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -54,8 +54,12 @@ export function SiteHeader({ name, label, items }: { name: string; label?: strin
   return (
     <header className="site-header sticky top-0 z-10 border-b border-dashed border-rule bg-bg">
       <div className="mx-auto flex max-w-wrap items-center justify-between gap-4 px-6 py-4 md:px-12">
-        <a href="#top" aria-label={label} className="font-semibold no-underline">
-          {name}
+        {/* Both variants render; CSS shows the one matching data-theme so there's no flash before hydration. */}
+        <a href="#top" aria-label={label} className="pf-brand no-underline">
+          {/* eslint-disable @next/next/no-img-element -- static export; next/image can't optimize SVGs here */}
+          <img src="/brand-light.svg" alt="" width={28} height={28} className="pf-brand-light" />
+          <img src="/brand-dark.svg" alt="" width={28} height={28} className="pf-brand-dark" />
+          {/* eslint-enable @next/next/no-img-element */}
         </a>
         <nav aria-label="Sections" className="pf-nav no-print hidden items-center gap-5 md:flex">
           {links}

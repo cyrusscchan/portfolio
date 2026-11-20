@@ -127,6 +127,18 @@
   }
 
   /* SiteHeader */
+  .pf-brand {
+    display: flex;
+  }
+  .pf-brand-dark {
+    display: none;
+  }
+  [data-theme="dark"] .pf-brand-light {
+    display: none;
+  }
+  [data-theme="dark"] .pf-brand-dark {
+    display: block;
+  }
   .pf-nav a {
     font-size: 12px;
     line-height: 16px;
