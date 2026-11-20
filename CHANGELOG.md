@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-11-20
+
+### Changed
+
+- Publication entries link to the paper's URL instead of a DOI.
+- Publication links (URL, PDF, code) open in a new tab and share the external-link style used elsewhere.
+- Header home button shows the site logo, matching the light or dark theme, in place of the "CC" initials.
+
 ## [0.1.0] - 2026-11-18
 
 ### Added
@@ -22,5 +30,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Multi-stage Docker build serving the static export with nginx, plus `compose.yml`.
 - `NEXT_PUBLIC_SITE_URL` build argument for the canonical site URL.
 
-[Unreleased]: https://github.com/cyruscsc/portfolio/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/cyruscsc/portfolio/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/cyruscsc/portfolio/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/cyruscsc/portfolio/releases/tag/v0.1.0
