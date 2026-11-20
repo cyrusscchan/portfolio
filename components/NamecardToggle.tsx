@@ -1,35 +1,49 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useState } from "react";
+import { withViewTransition } from "@/lib/theme";
 
 const HASH = "#card";
 
 // Namecard view state: sets <html data-view="card"> and CSS does the rest (see .pf-namecard).
 // `#card` deep-links straight into it, Esc exits, and the screen is kept awake while it's up.
+// Toggling animates through a view transition (see the pf-vt-* keyframes); the deep link doesn't.
 export function useNamecard() {
   // null until the hash has been read, so mounting never rewrites the URL.
   const [active, setActive] = useState<boolean | null>(null);
 
-  useEffect(() => {
-    const sync = () => setActive(window.location.hash === HASH);
-    sync();
-    window.addEventListener("hashchange", sync);
-    return () => window.removeEventListener("hashchange", sync);
+  const setView = useCallback((next: boolean) => {
+    withViewTransition(() => setActive(next), next ? "card-in" : "card-out");
   }, []);
 
   useEffect(() => {
+    setActive(window.location.hash === HASH);
+    const onHash = () => setView(window.location.hash === HASH);
+    window.addEventListener("hashchange", onHash);
+    return () => window.removeEventListener("hashchange", onHash);
+  }, [setView]);
+
+  // Layout effect: flushSync runs it inside the transition, before the new state is captured.
+  // Leaving restores the scroll position the page had when the card opened.
+  useLayoutEffect(() => {
+    if (!active) return;
     const root = document.documentElement;
+    const scrollY = window.scrollY;
+    root.dataset.view = "card";
+    window.scrollTo({ top: 0, behavior: "instant" });
+    return () => {
+      delete root.dataset.view;
+      window.scrollTo({ top: scrollY, behavior: "instant" });
+    };
+  }, [active]);
+
+  useEffect(() => {
     if (active === null) return;
     // Keep the URL in step so the card can be bookmarked or reopened.
     if (active !== (window.location.hash === HASH)) {
       history.replaceState(null, "", active ? HASH : window.location.pathname + window.location.search);
     }
-    if (!active) {
-      delete root.dataset.view;
-      return;
-    }
-    root.dataset.view = "card";
-    window.scrollTo(0, 0);
+    if (!active) return;
 
     let lock: WakeLockSentinel | null = null;
     let released = false;
@@ -48,7 +62,7 @@ export function useNamecard() {
       if (!lock || lock.released) acquire();
     };
     const onKey = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setActive(false);
+      if (event.key === "Escape") setView(false);
     };
     acquire();
     document.addEventListener("visibilitychange", onVisible);
@@ -59,9 +73,9 @@ export function useNamecard() {
       document.removeEventListener("visibilitychange", onVisible);
       window.removeEventListener("keydown", onKey);
     };
-  }, [active]);
+  }, [active, setView]);
 
-  const toggle = useCallback(() => setActive((on) => !on), []);
+  const toggle = useCallback(() => setView(!active), [active, setView]);
   return { active: active === true, toggle };
 }
 
@@ -69,7 +83,7 @@ export function NamecardToggle({ active, onToggle }: { active: boolean; onToggle
   return (
     <button
       type="button"
-      className="pf-toggle no-print"
+      className="pf-toggle pf-card-toggle no-print"
       aria-pressed={active}
       aria-label={active ? "Exit namecard view" : "Show namecard view"}
       onClick={onToggle}

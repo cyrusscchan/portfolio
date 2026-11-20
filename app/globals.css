@@ -610,7 +610,12 @@
     padding: 72px 24px 24px;
     overflow-y: auto;
     background: var(--bg);
-    animation: pf-expand var(--dur) var(--ease);
+  }
+  /* Without view transitions, at least fade the card in. */
+  @supports not (view-transition-name: none) {
+    .pf-namecard {
+      animation: pf-expand var(--dur) var(--ease);
+    }
   }
   @media (orientation: portrait) {
     .pf-namecard {
@@ -623,10 +628,64 @@
     height: auto;
     color: var(--ink);
     border: 1px solid var(--rule);
+    view-transition-name: namecard-qr;
   }
   .pf-namecard__info {
     width: min(44ch, 100%);
     overflow-wrap: anywhere;
+    view-transition-name: namecard-info;
+  }
+  .pf-card-toggle {
+    view-transition-name: card-toggle;
+  }
+
+  /* Namecard enter/exit (NamecardToggle → withViewTransition sets html[data-vt]).
+     Sequenced so page text and card text are never on screen together: the outgoing
+     content clears to a blank page first, then the incoming content appears. The new
+     root paints above the old one, so the old root holds still and the new one fades in
+     over it. The toggle glides between its nav slot and the corner. Display:none elements
+     aren't captured, so only the visible (desktop or mobile) toggle takes part. */
+  ::view-transition-group(card-toggle) {
+    animation-duration: 320ms;
+    animation-timing-function: var(--ease);
+  }
+  html[data-vt^="card-"]::view-transition-old(root) {
+    animation: none;
+  }
+  /* In: the blank card background covers the page, then the QR and info come in staggered. */
+  html[data-vt="card-in"]::view-transition-new(root) {
+    animation: pf-vt-fade 160ms var(--ease) both;
+  }
+  html[data-vt="card-in"]::view-transition-new(namecard-qr) {
+    animation: pf-vt-qr-in 320ms var(--ease) 140ms both;
+  }
+  html[data-vt="card-in"]::view-transition-new(namecard-info) {
+    animation: pf-vt-info-in 320ms var(--ease) 200ms both;
+  }
+  /* Out: the QR and info leave first, then the page fades in over the blank background. */
+  html[data-vt="card-out"]::view-transition-old(namecard-qr),
+  html[data-vt="card-out"]::view-transition-old(namecard-info) {
+    animation: pf-vt-fade 160ms var(--ease) reverse both;
+  }
+  html[data-vt="card-out"]::view-transition-new(root) {
+    animation: pf-vt-fade 200ms var(--ease) 160ms both;
+  }
+  @keyframes pf-vt-fade {
+    from {
+      opacity: 0;
+    }
+  }
+  @keyframes pf-vt-qr-in {
+    from {
+      opacity: 0;
+      transform: scale(0.96);
+    }
+  }
+  @keyframes pf-vt-info-in {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
   }
 
   /* Section reveal (PageEffects marks sections below the fold on load). */
@@ -652,7 +711,10 @@
     .pf-project[open] > summary::before,
     .pf-project[open] > .pf-project__body,
     .pf-entry--collapsible[open] > summary::before,
-    .pf-entry--collapsible[open] > .pf-entry__body {
+    .pf-entry--collapsible[open] > .pf-entry__body,
+    ::view-transition-group(*),
+    ::view-transition-old(*),
+    ::view-transition-new(*) {
       animation: none;
     }
     .pf-nav a,
