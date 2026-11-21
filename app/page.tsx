@@ -2,6 +2,7 @@ import { Contact } from "@/components/Contact";
 import { ExperienceEntry } from "@/components/ExperienceEntry";
 import { Footer } from "@/components/Footer";
 import { Hero } from "@/components/Hero";
+import { Namecard } from "@/components/Namecard";
 import { PageEffects } from "@/components/PageEffects";
 import { Projects } from "@/components/Projects";
 import { EssayScorerDetail } from "@/components/projects/essay-scorer";
@@ -36,6 +37,7 @@ export default function Home() {
       </a>
       <PageEffects />
       <SiteHeader label={`${profile.name} ${profile.surname}`} items={sections} />
+      <Namecard profile={profile} />
       <main id="main" className="mx-auto max-w-wrap px-6 pb-24 md:px-12">
         <Hero profile={profile} />
 
