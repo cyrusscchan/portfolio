@@ -9,12 +9,14 @@ A single-page, text-first portfolio site. Minimal, greyscale and monospace, in a
 - Tailwind CSS 4
 - [next-themes](https://github.com/pacocoursey/next-themes) for light/dark themes
 - [Zod](https://zod.dev) for build-time content validation
+- [qrcode](https://github.com/soldair/node-qrcode) for the namecard QR code, rendered at build time
 
 ## Features
 
 - One route (`/`) with anchored sections: about, experience, publications, projects, skills, education, contact
 - "Paper" (light) and "Terminal" (dark) themes, toggled from the header or with the `t` key
 - Projects expand inline, can be filtered by tag and deep-linked via `/#<slug>`, and include metrics tables
+- Namecard view (header "Card" button or `/#card`) with a QR code linking to the site, for sharing in person; Esc exits and the screen stays awake while it's open
 - Citation-style publication entries with a copy-BibTeX button
 - Print stylesheet so the page prints as a clean resume; collapsed sections open automatically when printing
 - Subtle animations that respect `prefers-reduced-motion`
@@ -54,7 +56,7 @@ npm start          # serve out/ locally
 
 | Variable               | Purpose                                                                 | Default               |
 | ---------------------- | ----------------------------------------------------------------------- | --------------------- |
-| `NEXT_PUBLIC_SITE_URL` | Canonical site URL used in the sitemap, `robots.txt` and OG metadata. Read at build time. | `https://example.com` |
+| `NEXT_PUBLIC_SITE_URL` | Canonical site URL used in the sitemap, `robots.txt`, OG metadata and the namecard QR code. Read at build time. | `https://example.com` |
 
 ## Deployment
 
